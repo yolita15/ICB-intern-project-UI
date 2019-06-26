@@ -8,5 +8,12 @@
 
 .left-menu {
     background-color: #153153;
+    color: gray;
+    text-align: center;
+    font-size: 1em;
+}
+
+.selected {
     color: white;
+    cursor: pointer;
 }

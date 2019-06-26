@@ -1,0 +1,12 @@
+.navbar {
+    background-color: white;
+    color:  #153153;
+}
+.navbar > span {
+    color:  #153153;
+}
+
+.left-menu {
+    background-color: #153153;
+    color: white;
+}

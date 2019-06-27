@@ -1,6 +1,7 @@
 .navbar {
     background-color: white;
     color:  #153153;
+    z-index: 1;
 }
 .navbar > span {
     color:  #153153;
@@ -11,9 +12,15 @@
     color: gray;
     text-align: center;
     font-size: 1em;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .selected {
     color: white;
     cursor: pointer;
+}
+
+.main {
+    background-color:rgb(242, 242, 242);
 }

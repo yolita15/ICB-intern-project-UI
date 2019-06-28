@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Company } from 'src/app/models/company';
+import { Department } from 'src/app/models/department';
 
 @Component({
   selector: 'app-company',
@@ -7,8 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyComponent implements OnInit {
 
-  constructor() { }
-
+  company = new Company("Name", "Indzhe Voyvoda 7, 1309", "www.kotarakarumen.com", "7835426572");
   ngOnInit() {
   }
 

@@ -1,0 +1,10 @@
+.row {
+    background-color: white;
+    border-radius: 3px;
+    color: dimgray;
+}
+
+.company-name {
+    text-transform: uppercase;
+    font-weight: bold;
+}

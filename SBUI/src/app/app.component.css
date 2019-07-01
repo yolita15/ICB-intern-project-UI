@@ -16,9 +16,19 @@
     border-bottom-right-radius: 3px;
 }
 
-.selected {
-    color: white;
+.left-menu div {
     cursor: pointer;
+    outline: none;
+    outline-style: none;
+}
+
+.left-menu div:hover {
+    color: white;
+    transition: 0.6s;
+}
+
+.active {
+    color: white;
 }
 
 .main {

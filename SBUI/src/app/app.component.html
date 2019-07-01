@@ -2,22 +2,19 @@
 <nav class="navbar navbar-light shadow-sm">
   <span class="navbar-brand mb-0 h1">Service Book</span>
 </nav>
-<div class="container-fluid h-100"> 
+<div class="container-fluid h-100">
   <div class="row h-100">
     <div class="col-md-2 left-menu">
-      <div class="row">
-        <div class="col-md-12 mt-5"><i class="fas fa-tachometer-alt fa-4x"></i></div>
-        <div class="col-md-12 mt-2">Overview</div>
-        <div class="col-md-12 mt-3 selected"><i class="far fa-building fa-4x"></i></div>
-        <div class="col-md-12 mt-2 selected">My Company</div>
-        <div class="col-md-12 mt-3"><i class="far fa-list-alt fa-4x"></i></div>
-        <div class="col-md-12 mt-2">Controls</div>
-      </div>
+      <div class="col-md-12 mt-5" routerLinkActive='active' [routerLink]="['/overview']"><i
+          class="d-block fas fa-tachometer-alt fa-4x"></i>Overview</div>
+      <div class="col-md-12 mt-3" routerLinkActive='active' [routerLink]="['/company']"><i
+          class="d-block far fa-building fa-4x"></i>My
+        Company</div>
+      <div class="col-md-12 mt-3" routerLinkActive='active' [routerLink]="['/controls']"><i
+          class="d-block far fa-list-alt fa-4x"></i>Controls</div>
     </div>
     <div class="col-md-10 main">
-      <app-company></app-company>
-      <app-central-menu></app-central-menu>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>

@@ -22,3 +22,13 @@ hr {
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
 }
+
+.icon:focus  {
+    outline: none;
+    outline-style: none;
+}
+
+.active {
+    color:  #153153;
+}
+

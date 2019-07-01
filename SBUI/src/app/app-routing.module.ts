@@ -9,11 +9,8 @@ import { ControlsComponent } from './controls/controls.component';
 const routes: Routes = [ 
   { path: 'overview', component: OverviewComponent },
   { 
-    path: 'company', component: CompanyComponent,
-    children: [
-      { path: 'structure', component: StructureComponent },
-      { path: 'contacts', component: ContactsComponent },
-    ]
+    path: 'company',
+    loadChildren: './company/company.module#CompanyModule'
   },
   { path: 'controls', component: ControlsComponent },
 ];

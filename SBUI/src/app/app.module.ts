@@ -14,13 +14,8 @@ import { CompanyComponent } from './company/company.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CompanyComponent,
     OverviewComponent,
     ControlsComponent,
-    CompanyDetailsComponent,
-    WizardComponent,
-    StructureComponent,
-    ContactsComponent
   ],
   imports: [
     AppRoutingModule,

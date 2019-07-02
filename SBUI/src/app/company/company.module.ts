@@ -12,7 +12,6 @@ import { TreeViewModule } from '@progress/kendo-angular-treeview'
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
-import '@progress/kendo-ui';
 
 @NgModule({
   declarations: [

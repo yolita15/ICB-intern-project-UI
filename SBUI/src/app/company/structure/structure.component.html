@@ -1,3 +1,47 @@
-<p>
-  structure works!
-</p>
+<div class="row m-1 shadow-sm pt-3 pb-3">
+  <div class="col-md-12 heading"><i class="fas fa-filter"></i> Filter
+    <hr>
+  </div>
+  <div class="col-md pl-4 pr-4 mb-3">
+    <div class="row">
+      <div class="col-md-10">
+        <h6>Bulding / Object Name</h6>
+        <div class="input-group">
+          <input aria-describedby="inner-button" class="form-control" kendoTextBox value="{{selectedKeysSecond}}" />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #first
+              (click)="showFirst=!showFirst"><i class="fas fa-list"></i></button>
+          </div>
+        </div>
+        <kendo-popup *ngIf="showFirst" [anchor]="first">
+          <kendo-treeview [nodes]="data" textField="text" kendoTreeViewHierarchyBinding kendoTreeViewExpandable
+            kendoTreeViewSelectable [selectBy]="'text'" [(selectedKeys)]="selectedKeysSecond" childrenField="items">
+          </kendo-treeview>
+        </kendo-popup>
+      </div>
+    </div>
+  </div>
+  <div class="col-md pl-4 pr-4 mb-3">Object Type</div>
+  <div class="col-md pl-4 pr-4 mb-3">
+    <div class="row">
+      <div class="col-md-10">
+        <h6>TFM Code</h6>
+        <div class="input-group">
+          <input aria-describedby="inner-button" class="form-control" kendoTextBox value="{{selectedKeys}}" />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #anchor
+              (click)="show=!show"><i class="fas fa-list"></i></button>
+          </div>
+        </div>
+        <kendo-popup *ngIf="show" [anchor]="anchor">
+          <kendo-treeview [nodes]="data" textField="text" kendoTreeViewHierarchyBinding kendoTreeViewExpandable
+            kendoTreeViewSelectable [selectBy]="'text'" [(selectedKeys)]="selectedKeys" childrenField="items">
+          </kendo-treeview>
+        </kendo-popup>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1 mt-4 pt-1 text-left">
+    <button kendoButton primary=true><i class="fas fa-eraser mr-2"></i> Clear</button>
+  </div>
+</div>

@@ -11,7 +11,8 @@
     background-color: #153153;
     color: gray;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: 500;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }

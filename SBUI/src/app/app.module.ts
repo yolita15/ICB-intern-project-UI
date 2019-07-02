@@ -5,11 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ControlsComponent } from './controls/controls.component';
-import { ContactsComponent } from './company/contacts/contacts.component';
-import { CompanyDetailsComponent } from './company/company-details/company-details.component';
-import { WizardComponent } from './company/wizard/wizard.component';
-import { StructureComponent } from './company/structure/structure.component';
-import { CompanyComponent } from './company/company.component';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PopupModule } from '@progress/kendo-angular-popup';
+import { TreeViewModule } from '@progress/kendo-angular-treeview';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -19,7 +26,13 @@ import { CompanyComponent } from './company/company.component';
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    ButtonsModule,
+    BrowserAnimationsModule,
+    PopupModule,
+    TreeViewModule,
+    InputsModule,
+    DropDownsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

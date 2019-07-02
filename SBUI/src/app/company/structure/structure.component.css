@@ -1,0 +1,23 @@
+.row {
+    background-color: white;
+    border-radius: 3px;
+    color: dimgray;
+}
+
+.heading {
+    color: #153153;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color:  #153153;
+}
+
+#inner-button:focus {
+    outline: none;
+    box-shadow: none;
+}

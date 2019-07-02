@@ -1,46 +1,55 @@
-
-<div class="row mt-5 m-1">
+<div class="row mt-4 mb-4 m-1">
   <div class="col-md"></div>
   <div class="col-md-6">
-    <div class="row text-center"> 
+    <div class="row text-center">
       <div class="col-md menu-item">
         <div class="row">
           <div class="p-0 col-md"></div>
           <div class="p-0 col-md icon" routerLinkActive='active' [routerLink]="['overview']">
-              <span class="fa-stack fa-3x" style="vertical-align: top;">
-                <i class="far fa-circle fa-stack-2x "></i>
-                <i class="fas fa-info-circle fa-stack-1x"></i>
-              </span>
-            </div>
-          <div class="p-0 col-md"><hr class="hr-left-border"></div>
+            <span class="fa-stack fa-3x" style="vertical-align: top;">
+              <i class="far fa-circle fa-stack-2x "></i>
+              <i class="fas fa-info-circle fa-stack-1x"></i>
+            </span>
+            Overview
           </div>
-        Overview
-      </div>
-      <div class="col-md menu-item" >
-        <div class="row">
-            <div class="p-0 col-md"><hr class="hr-right-border"></div>
-            <div class="p-0 col-md icon" routerLinkActive='active' [routerLink]="['contacts']">
-                <span class="fa-stack fa-3x" style="vertical-align: top;">
-                  <i class="far fa-circle fa-stack-2x "></i>
-                  <i class="fas fa-users fa-stack-1x"></i>
-                </span>
-            </div>
-            <div class="p-0 col-md"><hr class="hr-left-border"></div>
+          <div class="p-0 col-md">
+            <hr class="hr-left-border">
+          </div>
         </div>
-        Contacts
       </div>
       <div class="col-md menu-item">
         <div class="row">
-            <div class="p-0 col-md"><hr class="hr-right-border"></div>
-            <div class="p-0 col-md icon" routerLinkActive='active' [routerLink]="['structure']">
-                <span class="fa-stack fa-3x" style="vertical-align: top;" >
-                  <i class="far fa-circle fa-stack-2x" ></i>
-                  <i class="fas fa-network-wired fa-stack-1x" ></i>
-                </span>
-            </div>
-            <div class="p-0 col-md"></div>
+          <div class="p-0 col-md">
+            <hr class="hr-right-border">
+          </div>
+          <div class="p-0 col-md icon" routerLinkActive='active' [routerLink]="['contacts']">
+            <span class="fa-stack fa-3x" style="vertical-align: top;">
+              <i class="far fa-circle fa-stack-2x "></i>
+              <i class="fas fa-users fa-stack-1x"></i>
+            </span>
+            Contacts
+          </div>
+          <div class="p-0 col-md">
+            <hr class="hr-left-border">
+          </div>
         </div>
-        Structure
+        
+      </div>
+      <div class="col-md menu-item">
+        <div class="row">
+          <div class="p-0 col-md">
+            <hr class="hr-right-border">
+          </div>
+          <div class="p-0 col-md icon" routerLinkActive='active' [routerLink]="['structure']">
+            <span class="fa-stack fa-3x" style="vertical-align: top;">
+              <i class="far fa-circle fa-stack-2x"></i>
+              <i class="fas fa-network-wired fa-stack-1x"></i>
+            </span>
+            Structure
+          </div>
+          <div class="p-0 col-md"></div>
+        </div>
+        
       </div>
     </div>
   </div>

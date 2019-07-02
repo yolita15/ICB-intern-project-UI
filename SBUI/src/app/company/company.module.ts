@@ -6,6 +6,13 @@ import { WizardComponent } from './wizard/wizard.component';
 import { StructureComponent } from './structure/structure.component';
 import { RouterModule } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { PopupModule } from '@progress/kendo-angular-popup';
+import { TreeViewModule } from '@progress/kendo-angular-treeview'
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
+import '@progress/kendo-ui';
 
 @NgModule({
   declarations: [
@@ -16,6 +23,11 @@ import { ContactsComponent } from './contacts/contacts.component';
     ContactsComponent
   ],
   imports: [
+    ButtonsModule,
+    PopupModule,
+    TreeViewModule,
+    InputsModule,
+    DropDownsModule,
     CommonModule,
     RouterModule.forChild([
       { path: '', component: CompanyComponent, 

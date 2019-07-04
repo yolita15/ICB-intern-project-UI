@@ -6,9 +6,11 @@
     <div class="row">
       <div class="col-md-10">
         <h6>Bulding / Object Name</h6>
-        <div class="input-group">
-          <input #objectsInput aria-describedby="inner-button" class="form-control" kendoTextBox
-            value="{{selectedObjects}}" />
+        <div class="input-group" #objectsInput>
+          <kendo-autocomplete #objectsAutocomplete class="form-control" [data]="objects" [suggest]="true"
+            [valueField]="'name'" value="{{selectedObjects}}" (valueChange)="onObjectsAutocompleteValueChange($event)"
+            aria-describedby="inner-button">
+          </kendo-autocomplete>
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #objectsButton
               (click)="toggleObjects()"><i class="fas fa-list"></i></button>
@@ -16,8 +18,7 @@
         </div>
         <kendo-popup #objectsPopup *ngIf="showObjects" [anchor]="objectsInput">
           <kendo-treeview [nodes]="objects" textField="name" kendoTreeViewHierarchyBinding kendoTreeViewExpandable
-            kendoTreeViewSelectable [selectBy]="'name'" [(selectedKeys)]="selectedObjects" childrenField="items"
-            class="pr-5">
+            kendoTreeViewSelectable [selectBy]="'name'" [(selectedKeys)]="selectedObjects" class="pr-5">
           </kendo-treeview>
         </kendo-popup>
       </div>
@@ -27,7 +28,7 @@
     <div class="row">
       <div class="col-md-10">
         <h6>Object Type</h6>
-        <kendo-combobox [data]="types" [textField]="'name'" [valueField]="'name'" class="w-100">
+        <kendo-combobox #typesCombobox [data]="types" [suggest]="true" [textField]="'name'" [valueField]="'name'" class="w-100">
         </kendo-combobox>
       </div>
     </div>
@@ -36,18 +37,20 @@
     <div class="row">
       <div class="col-md-10">
         <h6>TFM Code</h6>
-        <div class="input-group">
-          <input #tfmsInput aria-describedby="inner-button" class="form-control" kendoTextBox
-            value="{{selectedTfms}}" />
+        <div class="input-group" #tfmsInput>
+          <kendo-autocomplete #tfmsAutocomplete class="form-control" [data]="tfms" [suggest]="true"
+            [valueField]="'displayInformation'" value="{{selectedTfms}}"
+            (valueChange)="onTfmsAutocompleteValueChange($event)" aria-describedby="inner-button">
+          </kendo-autocomplete>
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #tfmsButton
               (click)="toggleTfms()"><i class="fas fa-list"></i></button>
           </div>
         </div>
-        <kendo-popup #tfmsPopup *ngIf="show" [anchor]="tfmsInput">
+        <kendo-popup #tfmsPopup *ngIf="showTfms" [anchor]="tfmsInput">
           <kendo-treeview [nodes]="tfms" kendoTreeViewHierarchyBinding kendoTreeViewExpandable kendoTreeViewSelectable
-            [selectBy]="'name'" [(selectedKeys)]="selectedTfms" childrenField="items" class="pr-5">
-            <ng-template #test kendoTreeViewNodeTemplate let-dataItem>
+            [selectBy]="'displayInformation'" [(selectedKeys)]="selectedTfms" class="pr-5">
+            <ng-template kendoTreeViewNodeTemplate let-dataItem>
               {{dataItem.code}} {{dataItem.name}}
             </ng-template>
           </kendo-treeview>
@@ -56,6 +59,6 @@
     </div>
   </div>
   <div class="col-md-1 mt-4 pt-1 text-left">
-    <button kendoButton primary=true><i class="fas fa-eraser mr-2"></i> Clear</button>
+    <button kendoButton primary=true (click)="onClearClicked()"><i class="fas fa-eraser mr-2"></i> Clear</button>
   </div>
 </div>

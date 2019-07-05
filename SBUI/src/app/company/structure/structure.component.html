@@ -1,64 +1,82 @@
-<div class="row m-1 shadow-sm pt-3 pb-3">
-  <div class="col-md-12 heading"><i class="fas fa-filter"></i> Filter
-    <hr>
-  </div>
-  <div class="col-md pl-4 pr-4 mb-3">
-    <div class="row">
-      <div class="col-md-10">
-        <h6>Bulding / Object Name</h6>
-        <div class="input-group" #objectsInput>
-          <kendo-autocomplete #objectsAutocomplete class="form-control" [data]="objects" [suggest]="true"
-            [valueField]="'name'" value="{{selectedObjects}}" (valueChange)="onObjectsAutocompleteValueChange($event)"
-            aria-describedby="inner-button">
-          </kendo-autocomplete>
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #objectsButton
-              (click)="toggleObjects()"><i class="fas fa-list"></i></button>
+<div class="accordion border-bottom" id="filterAccordion">
+  <div class="card">
+    <div class="card-header p-0" id="filterHeading">
+      <h5 class="mb-0">
+        <button class="btn btn-block btn-link heading" type="button" data-toggle="collapse" data-target="#collapseOne"
+          aria-expanded="true" aria-controls="collapseOne">
+          <i class="fas fa-filter"></i> Filter
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="filterHeading" data-parent="#filterAccordion">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md pl-4 pr-4 mb-3">
+            <div class="row">
+              <div class="col-md-10">
+                <h6>Bulding / Object Name</h6>
+                <div class="input-group" #objectsInput>
+                  <kendo-autocomplete #objectsAutocomplete class="form-control" [data]="objects" [suggest]="true"
+                    [valueField]="'name'" value="{{selectedObjects}}"
+                    (valueChange)="onObjectsAutocompleteValueChange($event)" aria-describedby="inner-button">
+                  </kendo-autocomplete>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #objectsButton
+                      (click)="toggleObjects()"><i class="fas fa-list"></i></button>
+                  </div>
+                </div>
+                <kendo-popup *ngIf="showObjects" [anchor]="objectsInput">
+                  <kendo-treeview [nodes]="objects" textField="name" kendoTreeViewHierarchyBinding
+                    kendoTreeViewExpandable kendoTreeViewSelectable [selectBy]="'name'"
+                    [(selectedKeys)]="selectedObjects" class="pr-5">
+                  </kendo-treeview>
+                </kendo-popup>
+              </div>
+            </div>
+          </div>
+          <div class="col-md pl-4 pr-4 mb-3">
+            <div class="row">
+              <div class="col-md-10">
+                <h6>Object Type</h6>
+                <kendo-combobox #typesCombobox [data]="types" [suggest]="true" [textField]="'name'"
+                  [valueField]="'name'" class="w-100">
+                </kendo-combobox>
+              </div>
+            </div>
+          </div>
+          <div class="col-md pl-4 pr-4 mb-3">
+            <div class="row">
+              <div class="col-md-10">
+                <h6>TFM Code</h6>
+                <div class="input-group" #tfmsInput>
+                  <kendo-autocomplete #tfmsAutocomplete class="form-control" [data]="tfms" [suggest]="true"
+                    [valueField]="'displayInformation'" value="{{selectedTfms}}"
+                    (valueChange)="onTfmsAutocompleteValueChange($event)" aria-describedby="inner-button">
+                  </kendo-autocomplete>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #tfmsButton
+                      (click)="toggleTfms()"><i class="fas fa-list"></i></button>
+                  </div>
+                </div>
+                <kendo-popup *ngIf="showTfms" [anchor]="tfmsInput">
+                  <kendo-treeview [nodes]="tfms" kendoTreeViewHierarchyBinding kendoTreeViewExpandable
+                    kendoTreeViewSelectable [selectBy]="'displayInformation'" [(selectedKeys)]="selectedTfms"
+                    class="pr-5">
+                    <ng-template kendoTreeViewNodeTemplate let-dataItem>
+                      {{dataItem.code}} {{dataItem.name}}
+                    </ng-template>
+                  </kendo-treeview>
+                </kendo-popup>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 mt-4 pt-1 text-left">
+            <button kendoButton primary=true (click)="onClearClicked()"><i class="fas fa-eraser mr-2"></i>
+              Clear</button>
           </div>
         </div>
-        <kendo-popup #objectsPopup *ngIf="showObjects" [anchor]="objectsInput">
-          <kendo-treeview [nodes]="objects" textField="name" kendoTreeViewHierarchyBinding kendoTreeViewExpandable
-            kendoTreeViewSelectable [selectBy]="'name'" [(selectedKeys)]="selectedObjects" class="pr-5">
-          </kendo-treeview>
-        </kendo-popup>
       </div>
     </div>
-  </div>
-  <div class="col-md pl-4 pr-4 mb-3">
-    <div class="row">
-      <div class="col-md-10">
-        <h6>Object Type</h6>
-        <kendo-combobox #typesCombobox [data]="types" [suggest]="true" [textField]="'name'" [valueField]="'name'" class="w-100">
-        </kendo-combobox>
-      </div>
-    </div>
-  </div>
-  <div class="col-md pl-4 pr-4 mb-3">
-    <div class="row">
-      <div class="col-md-10">
-        <h6>TFM Code</h6>
-        <div class="input-group" #tfmsInput>
-          <kendo-autocomplete #tfmsAutocomplete class="form-control" [data]="tfms" [suggest]="true"
-            [valueField]="'displayInformation'" value="{{selectedTfms}}"
-            (valueChange)="onTfmsAutocompleteValueChange($event)" aria-describedby="inner-button">
-          </kendo-autocomplete>
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #tfmsButton
-              (click)="toggleTfms()"><i class="fas fa-list"></i></button>
-          </div>
-        </div>
-        <kendo-popup #tfmsPopup *ngIf="showTfms" [anchor]="tfmsInput">
-          <kendo-treeview [nodes]="tfms" kendoTreeViewHierarchyBinding kendoTreeViewExpandable kendoTreeViewSelectable
-            [selectBy]="'displayInformation'" [(selectedKeys)]="selectedTfms" class="pr-5">
-            <ng-template kendoTreeViewNodeTemplate let-dataItem>
-              {{dataItem.code}} {{dataItem.name}}
-            </ng-template>
-          </kendo-treeview>
-        </kendo-popup>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-1 mt-4 pt-1 text-left">
-    <button kendoButton primary=true (click)="onClearClicked()"><i class="fas fa-eraser mr-2"></i> Clear</button>
   </div>
 </div>

@@ -4,11 +4,20 @@
     color: dimgray;
 }
 
+.accordion {
+    border-bottom:initial;
+}
+
 .heading {
     color: #153153;
-    font-size: 1.1em;
     letter-spacing: 1px;
     font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+}
+
+.heading:hover {
+    text-decoration: none;
 }
 
 .form-control:focus {

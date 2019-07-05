@@ -28,9 +28,9 @@ export class StructureComponent {
   @ViewChild('tfmsButton') tfmsButton: ElementRef;
 
   constructor() {
-    this.types = [new Type("Bulding"), new Type("Floor"), new Type("Room")];
+    this.types = [new Type("Building"), new Type("Floor"), new Type("Room")];
     this.objects = [new Object("ICB"), new Object("Niproruda"), new Object("Floor1")];
-    this.tfms = [new Tfm("Bulding", "221"), new Tfm("Floor", "21"), new Tfm("Computer", "3")];
+    this.tfms = [new Tfm("Building", "221"), new Tfm("Floor", "21"), new Tfm("Computer", "3")];
   }
 
   public onObjectsAutocompleteValueChange(value: any) {

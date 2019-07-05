@@ -29,7 +29,7 @@ export class StructureComponent {
 
   constructor() {
     this.types = [new Type("Building"), new Type("Floor"), new Type("Room")];
-    this.objects = [new Object("ICB"), new Object("Niproruda"), new Object("Floor1")];
+    this.objects = [new Object("ICB", 1), new Object("Niproruda", 2), new Object("Floor1", 3)];
     this.tfms = [new Tfm("Building", "221"), new Tfm("Floor", "21"), new Tfm("Computer", "3")];
   }
 

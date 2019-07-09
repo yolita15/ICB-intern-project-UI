@@ -8,6 +8,7 @@ import { PopupModule } from '@progress/kendo-angular-popup';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { LayoutModule } from '@progress/kendo-angular-layout';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,12 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     InputsModule,
     DropDownsModule,
     CommonModule,
+    LayoutModule,
     RouterModule.forChild([
       {
         path: '', component: StructureComponent,
         children: [
-          { path: ':id', component: ObjectOverviewComponent }
+          { path: ':id', component: ObjectOverviewComponent,   }
         ]
       },
     ])

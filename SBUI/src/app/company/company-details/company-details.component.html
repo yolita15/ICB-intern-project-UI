@@ -1,35 +1,37 @@
 <div class="row shadow-sm mt-3 m-1 pb-3 pt-3">
   <div class="col-md-3 pt-2">
-    <img src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/62443174_2440250496216157_8456221913499303936_o.jpg?_nc_cat=105&_nc_oc=AQlN38IrT7YEJiADO-5T-R1WK1bP81L6yUs53i1kcDlRON23Fsk8aNNB4EGQT789Bag&_nc_ht=scontent.fsof3-1.fna&oh=f71c3b5ad6c4cec1c091ba7ee726ab04&oe=5D87FFC6" 
-    width="150" height="100" alt="">
+    <img
+      src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/62443174_2440250496216157_8456221913499303936_o.jpg?_nc_cat=105&_nc_oc=AQlN38IrT7YEJiADO-5T-R1WK1bP81L6yUs53i1kcDlRON23Fsk8aNNB4EGQT789Bag&_nc_ht=scontent.fsof3-1.fna&oh=f71c3b5ad6c4cec1c091ba7ee726ab04&oe=5D87FFC6"
+      class="img-thumbnail" width="150" alt="">
   </div>
   <div class="col-md mb-3">
     <div class="row">
-        <div class="col-md-1 pt-2"><i class="far fa-building"></i> </div>
-        <div class="col-md-11 pt-2 pl-0 company-name"> {{ company.name }}</div>
+      <div class="col-md-1 pt-2"><i class="far fa-building"></i> </div>
+      <div class="col-md-11 pt-2 pl-0 company-name"> {{ company.name }}</div>
     </div>
     <div class="row">
-        <div class="col-md-1 pt-2"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="col-md-11 pt-2 pl-0"> {{ company.address }}</div>
+      <div class="col-md-1 pt-2"><i class="fas fa-map-marker-alt"></i></div>
+      <div class="col-md-11 pt-2 pl-0"> {{ company.address }}</div>
     </div>
     <div class="row">
-        <div class="col-md-1 pt-2"><i class="fas fa-link"></i></div>
-        <div class="col-md-11 pt-2 pl-0">{{ company.website }}</div>
+      <div class="col-md-1 pt-2"><i class="fas fa-link"></i></div>
+      <div class="col-md-11 pt-2 pl-0">{{ company.website }}</div>
     </div>
   </div>
   <div class="col-md">
     <div class="col-md-12 d-inline"></div>
     <div class="row mt-2">
-        <div class="col-md-5 pt-2"><i class="fas fa-certificate"></i> Org. Number:</div>
-        <div class="col-md-7 pt-2"> {{ company.organizationNumber }}</div>
+      <div class="col-md-5 pt-2"><i class="fas fa-certificate"></i> Org. Number:</div>
+      <div class="col-md-7 pt-2"> {{ company.organizationNumber }}</div>
     </div>
     <div class="row">
-        <div class="col-md-5 pt-2"><i class="fas fa-user-tie"></i> Customer Contact:</div>
-        <div class="col-md-7 pt-2">{{ company.customer.firstName + ' ' + company.customer.lastName }}</div>
+      <div class="col-md-5 pt-2"><i class="fas fa-user-tie"></i> Customer Contact:</div>
+      <div class="col-md-7 pt-2">{{ company.customer.firstName + ' ' + company.customer.lastName }}</div>
     </div>
   </div>
   <div class="col-md-12">
     <hr>
-    <img *ngFor="let department of company.departments" class="mr-2" width="25" src="{{ department.pictureUrl }}" alt="{{ department.name }}" title="{{ department.name }}">
+    <img *ngFor="let department of company.departments" class="mr-2" width="25" src="{{ department.pictureUrl }}"
+      alt="{{ department.name }}" title="{{ department.name }}">
   </div>
 </div>

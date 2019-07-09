@@ -11,6 +11,8 @@ import { PopupModule } from '@progress/kendo-angular-popup';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+
 
 
 
@@ -32,7 +34,8 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     PopupModule,
     TreeViewModule,
     InputsModule,
-    DropDownsModule
+    DropDownsModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

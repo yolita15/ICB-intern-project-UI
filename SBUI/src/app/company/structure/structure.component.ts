@@ -2,7 +2,8 @@ import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Type } from 'src/app/models/type';
 import { Object } from 'src/app/models/object';
 import { Tfm } from 'src/app/models/tfm';
-import { ComboBoxComponent, AutoCompleteComponent, PopupComponent } from '@progress/kendo-angular-dropdowns';
+import { ComboBoxComponent, AutoCompleteComponent } from '@progress/kendo-angular-dropdowns';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-structure',
@@ -27,10 +28,14 @@ export class StructureComponent {
   @ViewChild('tfmsAutocomplete') tfmsAutocomplete: AutoCompleteComponent;
   @ViewChild('tfmsButton') tfmsButton: ElementRef;
 
-  constructor() {
+  constructor(private router: Router) {
     this.types = [new Type("Building"), new Type("Floor"), new Type("Room")];
     this.objects = [new Object("ICB", 1), new Object("Niproruda", 2), new Object("Floor1", 3)];
     this.tfms = [new Tfm("Building", "221"), new Tfm("Floor", "21"), new Tfm("Computer", "3")];
+  }
+
+  public handleSelection({ dataItem }: any) {
+    this.router.navigate([`company/structure/${dataItem.id}`]);
   }
 
   public onObjectsAutocompleteValueChange(value: any) {
@@ -92,5 +97,7 @@ export class StructureComponent {
     this.typesCombobox.reset();
     this.tfmsAutocomplete.reset();
     this.selectedTfms.pop();
+
+    this.router.navigate([`company/structure`]);
   }
 }

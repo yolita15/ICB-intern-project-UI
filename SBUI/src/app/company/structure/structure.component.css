@@ -1,23 +1,30 @@
-.row {
-    background-color: white;
-    border-radius: 3px;
-    color: dimgray;
-}
 
 .accordion {
-    border-bottom:initial;
+    border-bottom: initial;
 }
-
+.card {
+    border-radius: 4px;
+}
 .heading {
     color: #153153;
     letter-spacing: 1px;
     font-weight: bold;
     text-align: left;
     text-decoration: none;
+    margin-top: 6px;
 }
+
 
 .heading:hover {
     text-decoration: none;
+}
+
+.heading-button {
+    text-align: right;
+}
+
+.heading-button button {
+    margin: 6px 10px 6px 6px;
 }
 
 .form-control:focus {

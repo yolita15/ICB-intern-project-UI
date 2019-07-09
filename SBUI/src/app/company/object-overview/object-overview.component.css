@@ -1,0 +1,20 @@
+.heading {
+    color: #153153;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    margin-top: 6px;
+}
+
+.heading-buttons {
+    text-align: right;
+}
+
+.heading-buttons button {
+    margin: 6px;
+}
+
+.heading-buttons button:last-child {
+    margin-right: 10px;
+} 

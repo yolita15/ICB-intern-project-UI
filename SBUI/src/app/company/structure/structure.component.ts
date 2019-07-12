@@ -29,9 +29,9 @@ export class StructureComponent {
   @ViewChild('tfmsButton') tfmsButton: ElementRef;
 
   constructor(private router: Router) {
-    this.types = [new Type("Building"), new Type("Floor"), new Type("Room")];
-    this.objects = [new Object("ICB", 1), new Object("Niproruda", 2), new Object("Floor1", 3)];
-    this.tfms = [new Tfm("Building", "221"), new Tfm("Floor", "21"), new Tfm("Computer", "3")];
+    this.types = [new Type('Building'), new Type('Floor'), new Type('Room')];
+    this.objects = [new Object('ICB', 1), new Object('Niproruda', 2), new Object('Floor1', 3)];
+    this.tfms = [new Tfm('Building', '221'), new Tfm('Floor', '21'), new Tfm('Computer', '3')];
   }
 
   public handleSelection({ dataItem }: any) {
@@ -39,7 +39,7 @@ export class StructureComponent {
   }
 
   public onObjectsAutocompleteValueChange(value: any) {
-    if (this.selectedObjects.length == 0) {
+    if (this.selectedObjects.length === 0) {
       this.selectedObjects.push(value);
     } else {
       this.selectedObjects.pop();
@@ -48,7 +48,7 @@ export class StructureComponent {
   }
 
   public onTfmsAutocompleteValueChange(value: any) {
-    if (this.selectedTfms.length == 0) {
+    if (this.selectedTfms.length === 0) {
       this.selectedTfms.push(value);
     } else {
       this.selectedTfms.pop();
@@ -58,7 +58,7 @@ export class StructureComponent {
 
   @HostListener('keydown', ['$event'])
   public keydown(event: any): void {
-    if (event.keyCode === 27 || event.keyCode == 13) {
+    if (event.keyCode === 27 || event.keyCode === 13) {
       this.toggleTfms(false);
       this.toggleObjects(false);
     }

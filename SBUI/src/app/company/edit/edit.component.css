@@ -1,6 +1,7 @@
 .heading {
     color: #153153;
     letter-spacing: 1px;
+    font-weight: bold;
+    text-align: left;
     text-decoration: none;
 }
-

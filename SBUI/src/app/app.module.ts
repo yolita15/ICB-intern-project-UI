@@ -12,11 +12,10 @@ import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { LayoutModule } from '@progress/kendo-angular-layout';
-
-
-
-
-
+import { EditComponent } from './company/edit/edit.component';
+import { FormsModule } from '@angular/forms';
+import { UploadModule } from '@progress/kendo-angular-upload';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,17 +24,21 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
     AppComponent,
     OverviewComponent,
     ControlsComponent,
+    EditComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
     ButtonsModule,
     BrowserAnimationsModule,
     PopupModule,
     TreeViewModule,
     InputsModule,
     DropDownsModule,
-    LayoutModule
+    LayoutModule,
+    UploadModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

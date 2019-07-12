@@ -14,7 +14,7 @@ export class ObjectOverviewComponent implements OnInit {
   public objects: Object[];
   public departments: Department[];
 
-  constructor(private route: ActivatedRoute, ) {
+  constructor(private route: ActivatedRoute) {
     this.objects = [new Object("ICB", 1), new Object("Niproruda", 2), new Object("Floor1", 3)];
     this.departments = [ new Department('Pipe', 'assets/images/departments/pipe.png'),
         new Department('Electro', 'assets/images/departments/electro.png'),

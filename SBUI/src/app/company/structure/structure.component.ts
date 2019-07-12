@@ -3,7 +3,7 @@ import { Type } from 'src/app/models/type';
 import { Object } from 'src/app/models/object';
 import { Tfm } from 'src/app/models/tfm';
 import { ComboBoxComponent, AutoCompleteComponent } from '@progress/kendo-angular-dropdowns';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-structure',

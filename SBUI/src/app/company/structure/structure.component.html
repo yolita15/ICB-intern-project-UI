@@ -1,16 +1,16 @@
 <div class="accordion shadow-sm border-bottom" id="filterAccordion">
-  <div class="card">
+  <div class="card rounded">
     <div class="card-header p-0" id="filterHeading">
       <h5 class="mb-0">
         <div class="row">
           <div class="col-md-8">
-            <button class="btn btn-block btn-link heading" type="button" data-toggle="collapse"
+            <button class="btn btn-block btn-link font-weight-bold text-left mt-2 heading" type="button" data-toggle="collapse"
               data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               <i class="fas fa-filter"></i> Filter
             </button>
           </div>
-          <div class="col-md-4 heading-button">
-            <button kendoButton primary=true [look]="'flat'" (click)="onClearClicked()"><i class="fas fa-eraser mr-2"></i>
+          <div class="col-md text-right m-2">
+            <button kendoButton [primary]=true [look]="'flat'" (click)="onClearClicked()"><i class="fas fa-eraser mr-2"></i>
               Clear
             </button>
           </div>

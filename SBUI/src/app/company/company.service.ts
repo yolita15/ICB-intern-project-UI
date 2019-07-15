@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../models/company';
-import { Object } from 'src/app/models/object';
-import { isObjectArray } from '@progress/kendo-angular-dropdowns/dist/es2015/util';
 
 @Injectable({
     providedIn: 'root'

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Object } from 'src/app/models/object';
 import { ActivatedRoute } from '@angular/router';
+import { CompanyResolved } from 'src/app/models/company';
+import { Provider } from 'src/app/models/provider';
 
 
 @Component({
@@ -10,14 +12,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditComponent implements OnInit {
 
-  public variable: boolean = true;
-  public checked: boolean = true;
-  public object: Object = new Object("ICB", 1);
+  public object: Object;
+  public providers: Provider[];
+  public selectedProvider: Provider;
   private id: string;
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
+    const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
+    this.providers = resolvedData.company.providers;
+    this.selectedProvider = this.providers[0];
+    
+    resolvedData.company.objects.forEach(object => {
+      if(object.id === +this.id) {
+        this.object = object;
+      }
+    });
   }
 
 }

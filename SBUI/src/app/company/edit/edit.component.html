@@ -45,24 +45,15 @@
               </div>
               <div class="col-md">
                 <p class="mb-1 h6">Providers</p>
-                <kendo-dropdownlist class="w-75">
+                <kendo-dropdownlist class="w-75" name="providers" [data]="providers" [textField]="'name'"
+                  [valueField]="'name'" [(ngModel)]="selectedProvider">
                 </kendo-dropdownlist>
                 <p class="mt-2 heading text-uppercase">Departments</p>
-                <div class="mt-1">
-                  <input type="checkbox" id="enableCheck" class="k-checkbox" />
-                  <label class="k-checkbox-label" for="enableCheck">Enable</label>
-                </div>
-                <div class="mt-1">
-                  <input type="checkbox" id="enableCheck" class="k-checkbox" />
-                  <label class="k-checkbox-label" for="enableCheck">Enable</label>
-                </div>
-                <div class="mt-1">
-                  <input type="checkbox" id="enableCheck" class="k-checkbox" />
-                  <label class="k-checkbox-label" for="enableCheck">Enable</label>
-                </div>
-                <div class="mt-1">
-                  <input type="checkbox" id="enableCheck" class="k-checkbox" />
-                  <label class="k-checkbox-label" for="enableCheck">Enable</label>
+                <div *ngFor="let department of selectedProvider.departments">
+                  <input type="checkbox" id="{{department.name}}" class="k-checkbox"/>
+                  <label class="k-checkbox-label" for="{{department.name}}"><img class="mb-2" width="25"
+                      src="{{ department.pictureUrl }}" alt="{{ department.name }}" title="{{ department.name }}">
+                    <span class="ml-2">{{department.name}}</span></label>
                 </div>
                 <div class="mt-2">
                   <h6>Apply departments changes for children</h6>

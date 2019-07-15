@@ -17,3 +17,7 @@ export class Object {
     
     constructor(public name: string, public id: number) { }
 }
+
+export class ObjectResolved {
+    object: Object;
+}

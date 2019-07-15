@@ -1,9 +1,10 @@
-import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, ViewChild, ElementRef, HostListener, OnInit } from '@angular/core';
 import { Type } from 'src/app/models/type';
 import { Object } from 'src/app/models/object';
 import { Tfm } from 'src/app/models/tfm';
 import { ComboBoxComponent, AutoCompleteComponent } from '@progress/kendo-angular-dropdowns';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CompanyResolved } from 'src/app/models/company';
 
 @Component({
   selector: 'app-structure',
@@ -11,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./structure.component.css']
 })
 
-export class StructureComponent {
+export class StructureComponent implements OnInit {
 
   public types: Type[];
   @ViewChild('typesCombobox') typesCombobox: ComboBoxComponent;
@@ -28,12 +29,17 @@ export class StructureComponent {
   @ViewChild('tfmsAutocomplete') tfmsAutocomplete: AutoCompleteComponent;
   @ViewChild('tfmsButton') tfmsButton: ElementRef;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.types = [new Type('Building'), new Type('Floor'), new Type('Room')];
-    this.objects = [new Object('ICB', 1), new Object('Niproruda', 2), new Object('Floor1', 3)];
     this.tfms = [new Tfm('Building', '221'), new Tfm('Floor', '21'), new Tfm('Computer', '3')];
   }
 
+  ngOnInit(): void {
+    const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
+    console.log(this.route.snapshot.data['resolvedData']);
+    this.objects = resolvedData.company.objects;
+  }
+  
   public handleSelection({ dataItem }: any) {
     this.router.navigate([`company/structure/${dataItem.id}`]);
   }

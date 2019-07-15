@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Company } from 'src/app/models/company';
+import { Company, CompanyResolved } from 'src/app/models/company';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-company-details',
@@ -8,9 +9,13 @@ import { Company } from 'src/app/models/company';
 })
 export class CompanyDetailsComponent implements OnInit {
 
-  company = new Company("Name", "Indzhe Voyvoda 7, 1309", "www.kotarakarumen.com", "7835426572");
+  company: Company;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
+    this.company = resolvedData.company;
   }
 
 }

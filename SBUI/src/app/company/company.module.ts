@@ -5,6 +5,7 @@ import { CompanyDetailsComponent } from './company-details/company-details.compo
 import { WizardComponent } from './wizard/wizard.component';
 import { RouterModule } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
+import { CompanyResolver } from './company-resolver.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ContactsComponent } from './contacts/contacts.component';
     RouterModule.forChild([
       {
         path: '', component: CompanyComponent,
+        resolve: { resolvedData: CompanyResolver },
         children: [
           {
             path: 'structure',

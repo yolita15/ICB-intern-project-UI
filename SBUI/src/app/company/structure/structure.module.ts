@@ -9,6 +9,8 @@ import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { LayoutModule } from '@progress/kendo-angular-layout'
+import { CompanyResolver } from '../company-resolver.service';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout'
     ObjectOverviewComponent
   ],
   imports: [
+    FormsModule,
     ButtonsModule,
     PopupModule,
     TreeViewModule,
@@ -26,8 +29,13 @@ import { LayoutModule } from '@progress/kendo-angular-layout'
     RouterModule.forChild([
       {
         path: '', component: StructureComponent,
+        resolve: { resolvedData: CompanyResolver },
         children: [
-          { path: ':id', component: ObjectOverviewComponent },
+          {
+            path: ':id',
+            resolve: { resolvedData: CompanyResolver },
+            component: ObjectOverviewComponent
+          },
         ]
       },
     ])

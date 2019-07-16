@@ -23,12 +23,18 @@ export class EditComponent implements OnInit {
     const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
     this.providers = resolvedData.company.providers;
     this.selectedProvider = this.providers[0];
-    
+
     resolvedData.company.objects.forEach(object => {
-      if(object.id === +this.id) {
+      if (object.id === +this.id) {
         this.object = object;
       }
     });
   }
 
+  public onGetCoordsClicked() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.object.latitude = position.coords.latitude;
+      this.object.longitude = position.coords.longitude;
+    });
+  }
 }

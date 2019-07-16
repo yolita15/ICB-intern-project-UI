@@ -33,13 +33,13 @@
                   <input kendoTextBox />
                 </kendo-textbox-container>
                 <kendo-textbox-container floatingLabel="Latitude" class="w-75 mt-2">
-                  <input kendoTextBox />
+                  <input kendoTextBox name="latitude" [(ngModel)]="object.latitude" />
                 </kendo-textbox-container>
                 <kendo-textbox-container floatingLabel="Longitude" class="w-75 mt-2">
-                  <input kendoTextBox />
+                  <input kendoTextBox name="longitude" [(ngModel)]="object.longitude" />
                 </kendo-textbox-container>
-                <button kendoButton class="btn btn-block w-75 mt-4" [primary]=true [look]="'outline'"><i
-                    class="fas fa-map-marker-alt pr-2"></i>Get Coordinates</button>
+                <button kendoButton class="btn btn-block w-75 mt-4" [primary]=true [look]="'outline'"
+                  (click)="onGetCoordsClicked()"><i class="fas fa-map-marker-alt pr-2"></i>Get Coordinates</button>
                 <h6 class="mt-4">Comment</h6>
                 <textarea kendoTextArea class="w-75"></textarea>
               </div>
@@ -50,7 +50,7 @@
                 </kendo-dropdownlist>
                 <p class="mt-2 heading text-uppercase">Departments</p>
                 <div *ngFor="let department of selectedProvider.departments">
-                  <input type="checkbox" id="{{department.name}}" class="k-checkbox"/>
+                  <input type="checkbox" id="{{department.name}}" class="k-checkbox" />
                   <label class="k-checkbox-label" for="{{department.name}}"><img class="mb-2" width="25"
                       src="{{ department.pictureUrl }}" alt="{{ department.name }}" title="{{ department.name }}">
                     <span class="ml-2">{{department.name}}</span></label>

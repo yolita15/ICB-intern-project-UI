@@ -3,7 +3,7 @@ import { Type } from 'src/app/models/type';
 import { Object } from 'src/app/models/object';
 import { Tfm } from 'src/app/models/tfm';
 import { ComboBoxComponent, AutoCompleteComponent } from '@progress/kendo-angular-dropdowns';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
 import { CompanyResolved } from 'src/app/models/company';
 
 @Component({
@@ -13,6 +13,8 @@ import { CompanyResolved } from 'src/app/models/company';
 })
 
 export class StructureComponent implements OnInit {
+
+  private subscription: any;
 
   public types: Type[];
   @ViewChild('typesCombobox') typesCombobox: ComboBoxComponent;
@@ -36,10 +38,9 @@ export class StructureComponent implements OnInit {
 
   ngOnInit(): void {
     const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
-    console.log(this.route.snapshot.data['resolvedData']);
     this.objects = resolvedData.company.objects;
   }
-  
+
   public handleSelection({ dataItem }: any) {
     this.router.navigate([`company/structure/${dataItem.id}`]);
   }

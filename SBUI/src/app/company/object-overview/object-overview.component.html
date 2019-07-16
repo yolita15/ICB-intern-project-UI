@@ -10,9 +10,9 @@
             </button>
           </div>
           <div class="col-md text-right m-2">
-            <button kendoButton [primary]=true [look]="'flat'">Controls</button>
-            <button kendoButton [primary]=true [look]="'flat'">Deviations</button>
-            <button kendoButton [primary]=true [look]="'flat'">Calendar</button>
+            <button [routerLink]="['/company/structure/', object.id, 'controls']" kendoButton [primary]=true [look]="'flat'">Controls</button>
+            <button [routerLink]="['/company/structure/', object.id, 'deviations']" kendoButton [primary]=true [look]="'flat'">Deviations</button>
+            <button [routerLink]="['/company/structure/', object.id, 'calendar']" kendoButton [primary]=true [look]="'flat'">Calendar</button>
             <span class="pb-2 mx-1 border-left border-secondary"></span>
             <button [routerLink]="['/company/structure/', object.id, 'edit']" kendoButton [primary]=true [look]="'flat'"
               class="px-4"><i class="fas fa-pen mr-2"></i> Edit</button>

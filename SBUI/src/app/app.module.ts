@@ -16,15 +16,19 @@ import { EditComponent } from './company/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { UploadModule } from '@progress/kendo-angular-upload';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { CalendarComponent } from './company/calendar/calendar.component';
+import { DeviationsComponent } from './company/deviations/deviations.component';
+import { OverviewControlsComponent } from './company/overview-controls/overview-controls.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OverviewComponent,
     ControlsComponent,
-    EditComponent
+    EditComponent,
+    CalendarComponent,
+    DeviationsComponent,
+    OverviewControlsComponent
   ],
   imports: [
     AppRoutingModule,

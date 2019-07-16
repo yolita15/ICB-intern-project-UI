@@ -6,13 +6,18 @@ import { WizardComponent } from './wizard/wizard.component';
 import { RouterModule } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
 import { CompanyResolver } from './company-resolver.service';
+import { CompanyOverviewComponent } from './company-overview/company-overview.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { DeviationsComponent } from './deviations/deviations.component';
+import { OverviewControlsComponent } from './overview-controls/overview-controls.component';
 
 @NgModule({
   declarations: [
     CompanyComponent,
     CompanyDetailsComponent,
     WizardComponent,
-    ContactsComponent
+    ContactsComponent,
+    CompanyOverviewComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +30,8 @@ import { CompanyResolver } from './company-resolver.service';
             path: 'structure',
             loadChildren: './structure/structure.module#StructureModule'
           },
-          { path: 'contacts', component: ContactsComponent }
+          { path: 'contacts', component: ContactsComponent },
+          { path: 'overview', component: CompanyOverviewComponent }
         ]
       },
     ])

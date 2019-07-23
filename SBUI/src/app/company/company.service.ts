@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../models/company';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -7,8 +9,14 @@ import { Company } from '../models/company';
 
 export class CompanyService {
 
-    private company: Company = new Company('Kotaraka Rumen OOD', 'Indzhe Voyvoda 7, 1309', 'www.kotarakarumen.com', '6537495735242');
-    public getCompany(): Company {
-        return this.company;
+    private headers: HttpHeaders;
+    private accessPointUrl: string = 'http://localhost:49419/api/company';
+
+    constructor(private http: HttpClient) {
+        this.headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    }
+
+    public getCompany(): Observable<Company> {
+        return this.http.get<Company>(this.accessPointUrl, { headers: this.headers });
     }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { CompanyResolved } from '../models/company';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { CompanyService } from './company.service';
 
 @Injectable({
@@ -12,6 +13,6 @@ export class CompanyResolver implements Resolve<CompanyResolved> {
     constructor(private companyService: CompanyService) { }
 
     resolve(): Observable<CompanyResolved> {
-        return of({ company: this.companyService.getCompany() });
+        return this.companyService.getCompany().pipe(map(company => ({ company: company })));
     }
 }

@@ -7,9 +7,8 @@ import { RouterModule } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
 import { CompanyResolver } from './company-resolver.service';
 import { CompanyOverviewComponent } from './company-overview/company-overview.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { DeviationsComponent } from './deviations/deviations.component';
-import { OverviewControlsComponent } from './overview-controls/overview-controls.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CompanyService } from './company.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +20,7 @@ import { OverviewControlsComponent } from './overview-controls/overview-controls
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule.forChild([
       {
         path: '', component: CompanyComponent,
@@ -34,7 +34,10 @@ import { OverviewControlsComponent } from './overview-controls/overview-controls
           { path: 'overview', component: CompanyOverviewComponent }
         ]
       },
-    ])
+    ]),
+  ],
+  providers: [
+    CompanyService
   ]
 })
 export class CompanyModule { }

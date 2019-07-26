@@ -1,7 +1,7 @@
 export class Tfm {
-    public displayInformation: string;
-    constructor(public name: string, public code: string) 
-    { 
-        this.displayInformation = `${code} ${name}`
-    }
+    id: string;
+    parentId: string;
+    code: number;
+    name: string;
+    dataToDisplay: string;
 }

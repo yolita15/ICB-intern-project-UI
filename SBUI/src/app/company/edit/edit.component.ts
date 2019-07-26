@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Object } from 'src/app/models/object';
 import { ActivatedRoute } from '@angular/router';
 import { CompanyResolved } from 'src/app/models/company';
 import { Provider } from 'src/app/models/provider';
+import { Object } from 'src/app/models/object';
+import { ObjectService } from 'src/app/services/object.service';
 
 
 @Component({
@@ -16,19 +17,14 @@ export class EditComponent implements OnInit {
   public providers: Provider[];
   public selectedProvider: Provider;
   private id: string;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private objectService: ObjectService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
     this.providers = resolvedData.company.providers;
     this.selectedProvider = this.providers[0];
-
-    resolvedData.company.objects.forEach(object => {
-      if (object.id === +this.id) {
-        this.object = object;
-      }
-    });
+    this.objectService.getObject(this.id).subscribe(object => this.object = object);
   }
 
   public onGetCoordsClicked() {

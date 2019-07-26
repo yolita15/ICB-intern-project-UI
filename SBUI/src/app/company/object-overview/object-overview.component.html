@@ -4,18 +4,21 @@
       <h5 class="mb-0">
         <div class="row">
           <div class="col-md">
-            <button class="btn btn-block btn-link font-weight-bold text-left mt-2 heading" type="button" data-toggle="collapse"
-              data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <button class="btn btn-block btn-link font-weight-bold text-left mt-2 heading" type="button"
+              data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
               <i class="fas fa-list"></i> Overview
             </button>
           </div>
           <div class="col-md text-right m-2">
-            <button [routerLink]="['/company/structure/', object.id, 'controls']" kendoButton [primary]=true [look]="'flat'">Controls</button>
-            <button [routerLink]="['/company/structure/', object.id, 'deviations']" kendoButton [primary]=true [look]="'flat'">Deviations</button>
-            <button [routerLink]="['/company/structure/', object.id, 'calendar']" kendoButton [primary]=true [look]="'flat'">Calendar</button>
+            <button [routerLink]="['/company/structure/', object.id, 'controls']" skipLocationChange kendoButton
+              [primary]=true [look]="'flat'">Controls</button>
+            <button [routerLink]="['/company/structure/', object.id, 'deviations']" skipLocationChange kendoButton
+              [primary]=true [look]="'flat'">Deviations</button>
+            <button [routerLink]="['/company/structure/', object.id, 'calendar']" skipLocationChange kendoButton
+              [primary]=true [look]="'flat'">Calendar</button>
             <span class="pb-2 mx-1 border-left border-secondary"></span>
-            <button [routerLink]="['/company/structure/', object.id, 'edit']" kendoButton [primary]=true [look]="'flat'"
-              class="px-4"><i class="fas fa-pen mr-2"></i> Edit</button>
+            <button [routerLink]="['/company/structure/', object.id, 'edit']" kendoButton skipLocationChange
+              [primary]=true [look]="'flat'" class="px-4"><i class="fas fa-pen mr-2"></i> Edit</button>
           </div>
         </div>
       </h5>
@@ -33,13 +36,13 @@
                   <div class="mb-3 h6">Path:</div>
                   <div class="mb-3 h6">
                     Providers:
-                    <kendo-dropdownlist class="ml-2" [data]="providers" [textField]="'name'" [valueField]="'name'" [(ngModel)]="defaultProvider">
+                    <kendo-dropdownlist class="ml-2" [data]="providers" [textField]="'name'" [valueField]="'name'"
+                      [(ngModel)]="defaultProvider">
                     </kendo-dropdownlist>
                   </div>
                   <div class="text-left h5 mt-4 mb-4 heading">Departments</div>
                   <div *ngFor="let department of defaultProvider.departments">
-                    <img class="mb-2" width="25" src="{{ department.pictureUrl }}" alt="{{ department.name }}"
-                      title="{{ department.name }}">
+                    <img class="mb-2" width="25" src="{{ department.pictureUrl }}">
                     <span class="ml-2">{{department.name}}</span>
                   </div>
                 </div>

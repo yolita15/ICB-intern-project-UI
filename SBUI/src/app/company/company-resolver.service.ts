@@ -3,7 +3,7 @@ import { Resolve } from '@angular/router';
 import { CompanyResolved } from '../models/company';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CompanyService } from './company.service';
+import { CompanyService } from '../services/company.service';
 
 @Injectable({
     providedIn: 'root'

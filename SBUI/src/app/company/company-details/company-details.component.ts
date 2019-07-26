@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, CompanyResolved } from 'src/app/models/company';
 import { ActivatedRoute } from '@angular/router';
-import { CompanyService } from '../company.service';
 
 @Component({
   selector: 'app-company-details',
@@ -17,5 +16,6 @@ export class CompanyDetailsComponent implements OnInit {
   ngOnInit() {
     const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
     this.company = resolvedData.company;
+    console.log(this.company);
   }
 }

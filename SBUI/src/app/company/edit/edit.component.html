@@ -9,8 +9,8 @@
         </div>
         <div class="col-md text-right">
           <button kendoButton [primary]=true [look]="'flat'"><i class="fas fa-save pr-2"></i> Save</button>
-          <button kendoButton [routerLink]="['/company/structure/', id]" [primary]=true [look]="'flat'"><i
-              class="fas fa-times pr-2 text-danger"></i>
+          <button kendoButton [routerLink]="['/company/structure/', id]" skipLocationChange [primary]=true
+            [look]="'flat'"><i class="fas fa-times pr-2 text-danger"></i>
             Cancel</button>
         </div>
       </div>
@@ -52,7 +52,7 @@
                 <div *ngFor="let department of selectedProvider.departments">
                   <input type="checkbox" id="{{department.name}}" class="k-checkbox" />
                   <label class="k-checkbox-label" for="{{department.name}}"><img class="mb-2" width="25"
-                      src="{{ department.pictureUrl }}" alt="{{ department.name }}" title="{{ department.name }}">
+                      src="{{ department.pictureUrl }}" title="{{ department.name }}">
                     <span class="ml-2">{{department.name}}</span></label>
                 </div>
                 <div class="mt-2">

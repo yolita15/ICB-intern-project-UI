@@ -1,10 +1,13 @@
 import { Component, ViewChild, ElementRef, HostListener, OnInit } from '@angular/core';
-import { Type } from 'src/app/models/type';
-import { Object } from 'src/app/models/object';
+import { ObjectType } from 'src/app/models/object-type';
 import { Tfm } from 'src/app/models/tfm';
 import { ComboBoxComponent, AutoCompleteComponent } from '@progress/kendo-angular-dropdowns';
-import { Router, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
-import { CompanyResolved } from 'src/app/models/company';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CompanyResolved, Company } from 'src/app/models/company';
+import { TfmService } from 'src/app/services/tfm.service';
+import { ObjectTypeService } from 'src/app/services/object-type.service';
+import { ObjectService } from 'src/app/services/object.service';
+import { IObject } from 'src/app/models/object';
 
 @Component({
   selector: 'app-structure',
@@ -14,12 +17,11 @@ import { CompanyResolved } from 'src/app/models/company';
 
 export class StructureComponent implements OnInit {
 
-  private subscription: any;
-
-  public types: Type[];
+  private company: Company;
+  public objectTypes: ObjectType[];
   @ViewChild('typesCombobox') typesCombobox: ComboBoxComponent;
 
-  public objects: Object[];
+  public objects: IObject[];
   public selectedObjects: any[] = [];
   public showObjects: boolean = false;
   @ViewChild('objectsAutocomplete') objectsAutocomplete: AutoCompleteComponent;
@@ -31,18 +33,20 @@ export class StructureComponent implements OnInit {
   @ViewChild('tfmsAutocomplete') tfmsAutocomplete: AutoCompleteComponent;
   @ViewChild('tfmsButton') tfmsButton: ElementRef;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.types = [new Type('Building'), new Type('Floor'), new Type('Room')];
-    this.tfms = [new Tfm('Building', '221'), new Tfm('Floor', '21'), new Tfm('Computer', '3')];
-  }
+  constructor(private router: Router, private route: ActivatedRoute, private tfmService: TfmService,
+    private objectTypeService: ObjectTypeService, private objectService: ObjectService) { }
 
   ngOnInit(): void {
     const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
-    this.objects = resolvedData.company.objects;
+    this.company = resolvedData.company;
+
+    this.objectService.getObjectsForCompany(this.company.id).subscribe(objects => { this.objects = objects; console.log(this.objects) })
+    this.objectTypeService.getObjectTypes().subscribe(objectTypes => { this.objectTypes = objectTypes; console.log(this.objectTypes) });
+    this.tfmService.getTfms().subscribe(tfms => { this.tfms = tfms; console.log(this.tfms) });
   }
 
   public handleSelection({ dataItem }: any) {
-    this.router.navigate([`company/structure/${dataItem.id}`]);
+    this.router.navigate([`${dataItem.id}`], { relativeTo: this.route, skipLocationChange: true });
   }
 
   public onObjectsAutocompleteValueChange(value: any) {
@@ -71,31 +75,12 @@ export class StructureComponent implements OnInit {
     }
   }
 
-  @HostListener('click', ['$event'])
-  public documentClick(event: any): void {
-    if (!this.containsTfms(event.target)) {
-      this.toggleTfms(false);
-    }
-
-    if (!this.containsObjects(event.target)) {
-      this.toggleObjects(false);
-    }
-  }
-
   public toggleTfms(show?: boolean): void {
     this.showTfms = show !== undefined ? show : !this.showTfms;
   }
 
   public toggleObjects(show?: boolean): void {
     this.showObjects = show !== undefined ? show : !this.showObjects;
-  }
-
-  private containsTfms(target: any): boolean {
-    return this.tfmsButton.nativeElement.contains(target);
-  }
-
-  private containsObjects(target: any): boolean {
-    return this.objectsButton.nativeElement.contains(target);
   }
 
   public onClearClicked() {

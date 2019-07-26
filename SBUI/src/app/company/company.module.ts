@@ -8,7 +8,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { CompanyResolver } from './company-resolver.service';
 import { CompanyOverviewComponent } from './company-overview/company-overview.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CompanyService } from './company.service';
+import { CompanyService } from '../services/company.service';
 
 @NgModule({
   declarations: [

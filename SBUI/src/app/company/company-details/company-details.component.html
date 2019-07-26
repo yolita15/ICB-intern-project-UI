@@ -26,12 +26,14 @@
     </div>
     <div class="row">
       <div class="col-md-5 pt-2"><i class="fas fa-user-tie"></i> Customer Contact:</div>
-      <div class="col-md-7 pt-2">{{ company.customer.firstName + ' ' + company.customer.lastName }}</div>
+      <div class="col-md-7 pt-2">{{ company.customer.name }}</div>
     </div>
   </div>
   <div class="col-md-12">
     <hr>
-    <img *ngFor="let department of company.departments" class="mr-2" width="25" src="{{ department.pictureUrl }}"
-      alt="{{ department.name }}" title="{{ department.name }}">
+    <span *ngFor="let provider of company.providers">
+      <img *ngFor="let department of provider.departments" class="mr-2" width="25" src="{{ department.pictureUrl }}"
+        alt="{{ department.name }}" title="{{ department.name }}">
+    </span>
   </div>
 </div>

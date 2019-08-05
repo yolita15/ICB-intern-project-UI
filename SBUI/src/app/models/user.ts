@@ -1,4 +1,7 @@
+import { UserType } from './user-type';
+
 export class User {
-    constructor(public firstName: string, public lastName: string)
-    { }
+    id: string;
+    name: string;
+    type: UserType;
 }

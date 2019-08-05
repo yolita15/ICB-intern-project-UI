@@ -9,8 +9,8 @@
         </div>
         <div class="col-md text-right">
           <button kendoButton [primary]=true [look]="'flat'"><i class="fas fa-save pr-2"></i> Save</button>
-          <button kendoButton [routerLink]="['/company/structure/', id]" skipLocationChange [primary]=true
-            [look]="'flat'"><i class="fas fa-times pr-2 text-danger"></i>
+          <button kendoButton [routerLink]="['/company/structure/', id]" [primary]=true [look]="'flat'"><i
+              class="fas fa-times pr-2 text-danger"></i>
             Cancel</button>
         </div>
       </div>
@@ -27,10 +27,10 @@
                   <input kendoTextBox [(ngModel)]="object.name" name="name" />
                 </kendo-textbox-container>
                 <kendo-textbox-container floatingLabel="TFM" class="w-75 mt-2">
-                  <input kendoTextBox name="tfm" />
+                  <input kendoTextBox name="tfm" [(ngModel)]="object.tfm.dataToDisplay" />
                 </kendo-textbox-container>
                 <kendo-textbox-container floatingLabel="Object Identifier" class="w-75 mt-2">
-                  <input kendoTextBox />
+                  <input kendoTextBox [(ngModel)]="object.objectIdentifier" name="objectIdentifier" />
                 </kendo-textbox-container>
                 <kendo-textbox-container floatingLabel="Latitude" class="w-75 mt-2">
                   <input kendoTextBox name="latitude" [(ngModel)]="object.latitude" />
@@ -52,7 +52,7 @@
                 <div *ngFor="let department of selectedProvider.departments">
                   <input type="checkbox" id="{{department.name}}" class="k-checkbox" />
                   <label class="k-checkbox-label" for="{{department.name}}"><img class="mb-2" width="25"
-                      src="{{ department.pictureUrl }}" title="{{ department.name }}">
+                      src="{{ department.imageUrl }}" title="{{ department.name }}">
                     <span class="ml-2">{{department.name}}</span></label>
                 </div>
                 <div class="mt-2">
@@ -83,9 +83,7 @@
                     <button kendoButton [primary]=true [look]="'flat'"><i class="fas fa-trash"></i></button>
                   </div>
                 </div>
-                <img
-                  src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/66265494_2456641534577053_3116409672769208320_o.jpg?_nc_cat=104&_nc_oc=AQl79_xAbkSc_9WsGku8MGRI2y9Pg-6mGrH_Qknd26fw0g6cj8x9Pd_sgWwpUoNNZr0&_nc_ht=scontent.fsof3-1.fna&oh=2839d4eabe24e39791e4128a729d55ef&oe=5DA58519"
-                  alt="..." class="img-thumbnail mt-0">
+                <img src=" {{ object.imageUrl }}" class="img-thumbnail mt-0">
                 <kendo-upload [saveUrl]="uploadSaveUrl" [removeUrl]="uploadRemoveUrl" class="mt-2">
                   <kendo-upload-messages select="Upload Image">
                   </kendo-upload-messages>

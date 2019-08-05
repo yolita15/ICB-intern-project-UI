@@ -46,7 +46,7 @@ export class StructureComponent implements OnInit {
   }
 
   public handleSelection({ dataItem }: any) {
-    this.router.navigate([`${dataItem.id}`], { relativeTo: this.route, skipLocationChange: true });
+    this.router.navigate([`${dataItem.id}`], { relativeTo: this.route });
   }
 
   public onObjectsAutocompleteValueChange(value: any) {

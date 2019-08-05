@@ -10,15 +10,15 @@
             </button>
           </div>
           <div class="col-md text-right m-2">
-            <button [routerLink]="['/company/structure/', object.id, 'controls']" skipLocationChange kendoButton
-              [primary]=true [look]="'flat'">Controls</button>
-            <button [routerLink]="['/company/structure/', object.id, 'deviations']" skipLocationChange kendoButton
-              [primary]=true [look]="'flat'">Deviations</button>
-            <button [routerLink]="['/company/structure/', object.id, 'calendar']" skipLocationChange kendoButton
-              [primary]=true [look]="'flat'">Calendar</button>
+            <button [routerLink]="['/company/structure/', object.id, 'controls']" kendoButton [primary]=true
+              [look]="'flat'">Controls</button>
+            <button [routerLink]="['/company/structure/', object.id, 'deviations']" kendoButton [primary]=true
+              [look]="'flat'">Deviations</button>
+            <button [routerLink]="['/company/structure/', object.id, 'calendar']" kendoButton [primary]=true
+              [look]="'flat'">Calendar</button>
             <span class="pb-2 mx-1 border-left border-secondary"></span>
-            <button [routerLink]="['/company/structure/', object.id, 'edit']" kendoButton skipLocationChange
-              [primary]=true [look]="'flat'" class="px-4"><i class="fas fa-pen mr-2"></i> Edit</button>
+            <button [routerLink]="['/company/structure/', object.id, 'edit']" kendoButton [primary]=true [look]="'flat'"
+              class="px-4"><i class="fas fa-pen mr-2"></i> Edit</button>
           </div>
         </div>
       </h5>
@@ -31,7 +31,7 @@
             <ng-template kendoTabContent>
               <div class="row">
                 <div class="col-md mt-3 ml-3">
-                  <div class="mb-3 h6">Name: <span class="font-weight-normal">{{object.name}}</span>
+                  <div class="mb-3 h6">Name: <span class="font-weight-normal">{{ object.name }}</span>
                   </div>
                   <div class="mb-3 h6">Path:</div>
                   <div class="mb-3 h6">
@@ -42,14 +42,12 @@
                   </div>
                   <div class="text-left h5 mt-4 mb-4 heading">Departments</div>
                   <div *ngFor="let department of defaultProvider.departments">
-                    <img class="mb-2" width="25" src="{{ department.pictureUrl }}">
-                    <span class="ml-2">{{department.name}}</span>
+                    <img class="mb-2" width="25" src="{{ department.imageUrl }}">
+                    <span class="ml-2">{{ department.name }}</span>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <img
-                    src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/62443174_2440250496216157_8456221913499303936_o.jpg?_nc_cat=105&_nc_oc=AQlN38IrT7YEJiADO-5T-R1WK1bP81L6yUs53i1kcDlRON23Fsk8aNNB4EGQT789Bag&_nc_ht=scontent.fsof3-1.fna&oh=f71c3b5ad6c4cec1c091ba7ee726ab04&oe=5D87FFC6"
-                    class="img-fluid float-right" width="300" alt="">
+                  <img src="{{ object.imageUrl }}" class="img-fluid float-right" width="300" alt="">
                 </div>
               </div>
             </ng-template>

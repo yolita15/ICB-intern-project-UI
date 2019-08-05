@@ -1,7 +1,4 @@
-import { Type, Provider } from '@angular/compiler/src/core';
 import { Tfm } from './tfm';
-import { User } from './user';
-import { Department } from './department';
 import { ObjectType } from './object-type';
 import { Company } from './company';
 

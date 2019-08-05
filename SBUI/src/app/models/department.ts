@@ -3,6 +3,7 @@ import { Provider } from '@angular/core/src/render3/jit/compiler_facade_interfac
 export class Department {
     id: string;
     name: string;
+    imageUrl: string;
     providerId: string;
     provider: Provider;
 }

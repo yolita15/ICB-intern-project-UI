@@ -54,10 +54,7 @@
           </kendo-tabstrip-tab>
           <kendo-tabstrip-tab [title]="'Contacts'">
             <ng-template kendoTabContent>
-              <div class="mt-3 mb-3 font-weight-bold">Building/object Responsible Person: <span
-                  class="font-weight-normal">Kotaraka Rumen</span> </div>
-              <div class="mb-3 font-weight-bold">Building/object Dev. Responsible Person: <span
-                  class="font-weight-normal">Kotaraka Rumen</span></div>
+              <div *ngFor="let user of users" class="mt-3 mb-3 font-weight-bold">{{ user.type.name }}<span class="font-weight-normal"> {{ user.name}}</span></div>
             </ng-template>
           </kendo-tabstrip-tab>
         </kendo-tabstrip>

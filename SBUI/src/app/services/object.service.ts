@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Object, IObject } from '../models/object';
 import { Department } from '../models/department';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,10 @@ export class ObjectService {
   public getDepartmentsForObject(id: string): Observable<Department[]> {
     const url = `${this.accessPointUrl}/${id}/departments`;
     return this.http.get<Department[]>(url, { headers: this.headers });
+  }
+
+  public getUsersForObject(id: string): Observable<User[]> {
+    const url = `${this.accessPointUrl}/${id}/users`;
+    return this.http.get<User[]>(url, { headers: this.headers });
   }
 }

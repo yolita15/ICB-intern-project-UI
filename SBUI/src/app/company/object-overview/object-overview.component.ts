@@ -5,6 +5,7 @@ import { Provider } from 'src/app/models/provider';
 import { Object } from 'src/app/models/object';
 import { ObjectService } from 'src/app/services/object.service';
 import { Department } from 'src/app/models/department';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-object-overview',
@@ -17,6 +18,7 @@ export class ObjectOverviewComponent implements OnInit {
   public providers: Provider[];
   public defaultProvider: Provider;
   public departments: Department[];
+  public users: User[];
   private subscription: any
 
   constructor(private route: ActivatedRoute, private objectService: ObjectService) {
@@ -29,8 +31,9 @@ export class ObjectOverviewComponent implements OnInit {
     this.defaultProvider = this.providers[0];
 
     this.subscription = this.route.params.subscribe(routeParams => {
-      this.objectService.getObject(routeParams.id).subscribe(object => { this.object = object});
-      this.objectService.getDepartmentsForObject(routeParams.id).subscribe(departments => { this.departments = departments });
+      this.objectService.getObject(routeParams.id).subscribe(object => this.object = object);
+      this.objectService.getDepartmentsForObject(routeParams.id).subscribe(departments => this.departments = departments);
+      this.objectService.getUsersForObject(routeParams.id).subscribe(users => { this.users = users; console.log(this.users) });
     })
   }
 

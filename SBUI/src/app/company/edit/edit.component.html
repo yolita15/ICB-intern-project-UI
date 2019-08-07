@@ -52,7 +52,8 @@
                 <div *ngFor="let department of selectedProvider.departments">
                   <input type="checkbox" id="{{department.name}}" class="k-checkbox" />
                   <label class="k-checkbox-label" for="{{department.name}}"><img class="mb-2" width="25"
-                      src="http://localhost:49419/api/departments/{{ department.id }}/image" title="{{ department.name }}">
+                      src="http://localhost:49419/api/departments/{{ department.id }}/image"
+                      title="{{ department.name }}">
                     <span class="ml-2">{{department.name}}</span></label>
                 </div>
                 <div class="mt-2">
@@ -66,12 +67,12 @@
                     <label class="k-radio-label" for="multipleCheck">No</label>
                   </div>
                   <p class="mt-2 heading text-uppercase">Contacts</p>
-                  <h6>Building Responsible Person</h6>
-                  <kendo-autocomplete [data]="listItems" class="countries w-75">
-                  </kendo-autocomplete>
-                  <h6 class="mt-3">Building Deviation Responsible</h6>
-                  <kendo-autocomplete [data]="listItems" class="countries w-75">
-                  </kendo-autocomplete>
+                  <span *ngFor="let userType of userTypes">
+                      <h6>{{ userType.name }}</h6>
+                      <kendo-autocomplete [data]="users" class="countries w-75 mb-3" [valueField]="'name'"
+                        (click)="onUserAutocompleteClick()" [suggest]="true" [value]="getUserValue(userType.name)">
+                      </kendo-autocomplete>
+                  </span>
                 </div>
               </div>
               <div class="col-md">

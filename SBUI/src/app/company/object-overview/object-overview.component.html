@@ -1,4 +1,4 @@
-<div class="accordion shadow-sm border-bottom my-3" id="overviewAccordion">
+<div *ngIf="object.id" class="accordion shadow-sm border-bottom my-3" id="overviewAccordion">
   <div class="card rounded">
     <div class="card-header p-0" id="overviewHeading">
       <h5 class="mb-0">
@@ -42,12 +42,12 @@
                   </div>
                   <div class="text-left h5 mt-4 mb-4 heading">Departments</div>
                   <div *ngFor="let department of defaultProvider.departments">
-                    <img class="mb-2" width="25" src="{{ department.imageUrl }}">
+                    <img class="mb-2" width="25" src="http://localhost:49419/api/departments/{{ department.id }}/image">
                     <span class="ml-2">{{ department.name }}</span>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <img src="{{ object.imageUrl }}" class="img-fluid float-right" width="300" alt="">
+                  <img src="http://localhost:49419/api/objects/{{ object.id }}/image" class="img-fluid float-right" width="300" alt="">
                 </div>
               </div>
             </ng-template>

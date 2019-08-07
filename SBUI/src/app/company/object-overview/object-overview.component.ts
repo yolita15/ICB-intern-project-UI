@@ -13,13 +13,14 @@ import { Department } from 'src/app/models/department';
 })
 export class ObjectOverviewComponent implements OnInit {
   public id: string;
-  public object: Object = new Object();
+  public object: Object;
   public providers: Provider[];
   public defaultProvider: Provider;
   public departments: Department[];
   private subscription: any
 
   constructor(private route: ActivatedRoute, private objectService: ObjectService) {
+    this.object = new Object();
   }
 
   ngOnInit() {

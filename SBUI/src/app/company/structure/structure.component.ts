@@ -39,10 +39,6 @@ export class StructureComponent implements OnInit {
   ngOnInit(): void {
     const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
     this.company = resolvedData.company;
-
-    this.objectService.getObjectsForCompany(this.company.id).subscribe(objects => { this.objects = objects; console.log(this.objects) })
-    this.objectTypeService.getObjectTypes().subscribe(objectTypes => { this.objectTypes = objectTypes; console.log(this.objectTypes) });
-    this.tfmService.getTfms().subscribe(tfms => { this.tfms = tfms; console.log(this.tfms) });
   }
 
   public handleSelection({ dataItem }: any) {
@@ -56,6 +52,18 @@ export class StructureComponent implements OnInit {
       this.selectedObjects.pop();
       this.selectedObjects.push(value);
     }
+  }
+
+  public onObjectAutocompleteClick() {
+    this.objectService.getObjectsForCompany(this.company.id).subscribe(objects => this.objects = objects);
+  }
+
+  public onObjectTypesComboboxClick() {
+    this.objectTypeService.getObjectTypes().subscribe(objectTypes => this.objectTypes = objectTypes);
+  }
+
+  public onTfmsAutocompleteClick() {
+    this.tfmService.getTfms().subscribe(tfms => this.tfms = tfms);
   }
 
   public onTfmsAutocompleteValueChange(value: any) {

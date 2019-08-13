@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Object, IObject } from '../models/object';
 import { Department } from '../models/department';
@@ -27,13 +27,8 @@ export class ObjectService {
     return this.http.get<Object>(url, { headers: this.headers });
   }
 
-  public getDepartmentsForObject(id: string): Observable<Department[]> {
-    const url = `${this.accessPointUrl}/${id}/departments`;
-    return this.http.get<Department[]>(url, { headers: this.headers });
-  }
-
-  public getUsersForObject(id: string): Observable<User[]> {
-    const url = `${this.accessPointUrl}/${id}/users`;
-    return this.http.get<User[]>(url, { headers: this.headers });
+  public updateObject(obj: Object, applyForChildren: string): Observable<Object> {
+    const url = `${this.accessPointUrl}/${obj.id}`;
+    return this.http.put<Object>(url, obj, { headers: this.headers, params: { 'apply' : applyForChildren } });
   }
 }

@@ -19,6 +19,7 @@ export class StructureComponent implements OnInit {
 
   private company: Company;
   public objectTypes: ObjectType[];
+  private currentObjectType: ObjectType;
   @ViewChild('typesCombobox') typesCombobox: ComboBoxComponent;
 
   public objects: IObject[];
@@ -28,6 +29,7 @@ export class StructureComponent implements OnInit {
   @ViewChild('objectsButton') objectsButton: ElementRef;
 
   public tfms: Tfm[];
+  private currentTfm: Tfm;
   public selectedTfms: any[] = [];
   public showTfms: boolean = false;
   @ViewChild('tfmsAutocomplete') tfmsAutocomplete: AutoCompleteComponent;
@@ -41,8 +43,13 @@ export class StructureComponent implements OnInit {
     this.company = resolvedData.company;
   }
 
-  public handleSelection({ dataItem }: any) {
+  public handleObjectSelection({ dataItem }: any) {
     this.router.navigate([`${dataItem.id}`], { relativeTo: this.route });
+  }
+
+  public handleTfmSelection({ dataItem }: any) {
+    this.currentTfm = dataItem;
+    this.filter(this.currentObjectType, this.currentTfm);
   }
 
   public onObjectsAutocompleteValueChange(value: any) {
@@ -52,17 +59,33 @@ export class StructureComponent implements OnInit {
       this.selectedObjects.pop();
       this.selectedObjects.push(value);
     }
+
+    let id = this.objects.find(o => o.name === value).id;
+    this.router.navigate([`${id}`], { relativeTo: this.route });
   }
 
   public onObjectAutocompleteClick() {
-    this.objectService.getObjectsForCompany(this.company.id).subscribe(objects => this.objects = objects);
+    if (this.objects === undefined) {
+      this.objectService.getObjectsForCompany(this.company.id).subscribe(objects => this.objects = objects);
+    }
   }
 
   public onObjectTypesComboboxClick() {
+    if (this.objects === undefined) {
+      this.objectService.getObjectsForCompany(this.company.id).subscribe(objects => this.objects = objects);
+    }
     this.objectTypeService.getObjectTypes().subscribe(objectTypes => this.objectTypes = objectTypes);
   }
 
+  public onObjectTypeComboboxValueChange(objectType: any) {
+    this.currentObjectType = objectType;
+    this.filter(this.currentObjectType, this.currentTfm);
+  }
+
   public onTfmsAutocompleteClick() {
+    if (this.objects === undefined) {
+      this.objectService.getObjectsForCompany(this.company.id).subscribe(objects => this.objects = objects);
+    }
     this.tfmService.getTfms().subscribe(tfms => this.tfms = tfms);
   }
 
@@ -73,6 +96,9 @@ export class StructureComponent implements OnInit {
       this.selectedTfms.pop();
       this.selectedTfms.push(value);
     }
+
+    this.currentTfm = this.tfms.find(t => t.dataToDisplay === value);
+    this.filter(this.currentObjectType, this.currentTfm);
   }
 
   @HostListener('keydown', ['$event'])
@@ -89,6 +115,30 @@ export class StructureComponent implements OnInit {
 
   public toggleObjects(show?: boolean): void {
     this.showObjects = show !== undefined ? show : !this.showObjects;
+  }
+
+  filter(objectType: ObjectType, tfm: Tfm) {
+    if (this.objects === undefined) {
+      this.objectService.getObjectsForCompany(this.company.id).subscribe(objects => {
+        if (objectType && tfm === undefined) {
+        }
+        if (tfm && objectType === undefined) {
+        }
+      });
+    }
+    
+    if (tfm && objectType) {
+      let currentObject = this.objects.find(o => o.tfm.id === tfm.id && o.type.id === objectType.id);
+      if(currentObject) {
+        if(this.selectedObjects.length === 0) {
+          this.selectedObjects.push(currentObject.name);
+        } else {
+          this.selectedObjects.pop();
+          this.selectedObjects.push(currentObject.name);
+        }
+        this.router.navigate([`${currentObject.id}`], { relativeTo: this.route });
+      }
+    }
   }
 
   public onClearClicked() {

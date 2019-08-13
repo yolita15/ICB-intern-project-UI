@@ -8,7 +8,8 @@
           </button>
         </div>
         <div class="col-md text-right">
-          <button kendoButton [primary]=true [look]="'flat'"><i class="fas fa-save pr-2"></i> Save</button>
+          <button kendoButton [primary]=true [look]="'flat'" (click)="onSaveClicked(object)"><i
+              class="fas fa-save pr-2"></i> Save</button>
           <button kendoButton [routerLink]="['/company/structure/', id]" [primary]=true [look]="'flat'"><i
               class="fas fa-times pr-2 text-danger"></i>
             Cancel</button>
@@ -27,7 +28,10 @@
                   <input kendoTextBox [(ngModel)]="object.name" name="name" />
                 </kendo-textbox-container>
                 <kendo-textbox-container floatingLabel="TFM" class="w-75 mt-2">
-                  <input kendoTextBox name="tfm" [(ngModel)]="object.tfm.dataToDisplay" />
+                  <kendo-autocomplete [data]="tfms" [valueField]="'dataToDisplay'"
+                    (valueChange)="onTfmsAutocompleteValueChange($event)" (focus)="onTfmsAutocompleteClick()"
+                    [suggest]="true" [value]="object.tfm.dataToDisplay">
+                  </kendo-autocomplete>
                 </kendo-textbox-container>
                 <kendo-textbox-container floatingLabel="Object Identifier" class="w-75 mt-2">
                   <input kendoTextBox [(ngModel)]="object.objectIdentifier" name="objectIdentifier" />
@@ -41,7 +45,7 @@
                 <button kendoButton class="btn btn-block w-75 mt-4" [primary]=true [look]="'outline'"
                   (click)="onGetCoordsClicked()"><i class="fas fa-map-marker-alt pr-2"></i>Get Coordinates</button>
                 <h6 class="mt-4">Comment</h6>
-                <textarea kendoTextArea class="w-75"></textarea>
+                <textarea kendoTextArea class="w-75" [(ngModel)]="object.comment" name="comment"></textarea>
               </div>
               <div class="col-md">
                 <p class="mb-1 h6">Providers</p>
@@ -50,28 +54,30 @@
                 </kendo-dropdownlist>
                 <p class="mt-2 heading text-uppercase">Departments</p>
                 <div *ngFor="let department of selectedProvider.departments">
-                  <input type="checkbox" id="{{department.name}}" class="k-checkbox" />
-                  <label class="k-checkbox-label" for="{{department.name}}"><img class="mb-2" width="25"
+                  <input type="checkbox" id="{{ department.name }}" class="k-checkbox"
+                    [checked]="isForObject(department)" (change)="handleDepartmentsChecking(department, isForObject(department))"/>
+                  <label class="k-checkbox-label" for="{{ department.name }}"><img class="mb-2" width="25"
                       src="http://localhost:49419/api/departments/{{ department.id }}/image"
                       title="{{ department.name }}">
-                    <span class="ml-2">{{department.name}}</span></label>
+                    <span class="ml-2">{{ department.name }}</span></label>
                 </div>
                 <div class="mt-2">
                   <h6>Apply departments changes for children</h6>
                   <div class="k-form-field">
-                    <input type="radio" name="checkMode" id="singleCheck" value="single" class="k-radio right"
-                      [(ngModel)]="checkMode" />
-                    <label class="k-radio-label right mr-3" for="singleCheck">Yes</label>
-                    <input type="radio" name="checkMode" id="multipleCheck" value="multiple" class="k-radio"
-                      [(ngModel)]="checkMode" />
-                    <label class="k-radio-label" for="multipleCheck">No</label>
+                    <input type="radio" name="applyForChildren" id="checkYes" value="1" class="k-radio right"
+                      [(ngModel)]="applyForChildren"/>
+                    <label class="k-radio-label right mr-3" for="checkYes">Yes</label>
+                    <input type="radio" name="applyForChildren" id="checkNo" value="0" class="k-radio"
+                    [(ngModel)]="applyForChildren"/>
+                    <label class="k-radio-label" for="checkNo">No</label>
                   </div>
                   <p class="mt-2 heading text-uppercase">Contacts</p>
                   <span *ngFor="let userType of userTypes">
-                      <h6>{{ userType.name }}</h6>
-                      <kendo-autocomplete [data]="users" class="countries w-75 mb-3" [valueField]="'name'"
-                        (click)="onUserAutocompleteClick()" [suggest]="true" [value]="getUserValue(userType.name)">
-                      </kendo-autocomplete>
+                    <h6>{{ userType.name }}</h6>
+                    <kendo-autocomplete [data]="users" class="w-75 mb-3" [valueField]="'name'"
+                      (focus)="onUserAutocompleteClick()" 
+                      [suggest]="true" [value]="getUserValue(userType.name)">
+                    </kendo-autocomplete>
                   </span>
                 </div>
               </div>
@@ -80,12 +86,9 @@
                   <div class="col-md-10">
                     <p class="mb-1 mt-0 text-uppercase heading">Building Picture</p>
                   </div>
-                  <div class="col-md text-right mb-1">
-                    <button kendoButton [primary]=true [look]="'flat'"><i class="fas fa-trash"></i></button>
-                  </div>
                 </div>
                 <img src="http://localhost:49419/api/objects/{{ object.id }}/image" class="img-thumbnail mt-0">
-                <kendo-upload [saveUrl]="uploadSaveUrl" [removeUrl]="uploadRemoveUrl" class="mt-2">
+                <kendo-upload [saveUrl]="saveUrl" [removeUrl]="uploadRemoveUrl" class="mt-2" [(ngModel)]="myImage" name="image">
                   <kendo-upload-messages select="Upload Image">
                   </kendo-upload-messages>
                 </kendo-upload>
@@ -99,19 +102,6 @@
       </kendo-tabstrip-tab>
       <kendo-tabstrip-tab [title]="'Contacts'">
         <ng-template kendoTabContent>
-          <p>
-            The City of New York, often called New York City or simply New York, is the most populous city in the United
-            States. With an estimated 2015 population of 8,550,405 distributed over a land area of just 305 square miles
-            (790 km2), New York City is also the most densely populated major city in the United States. Located at the
-            southern tip of the state of New York, the city is the center of the New York metropolitan area, one of the
-            most populous urban agglomerations in the world.
-          </p>
-          <p>
-            A global power city, New York City exerts a significant impact upon commerce, finance, media, art, fashion,
-            research, technology, education, and entertainment, its fast pace defining the term New York minute. Home to
-            the headquarters of the United Nations, New York is an important center for international diplomacy and has
-            been described as the cultural and financial capital of the world.
-          </p>
         </ng-template>
       </kendo-tabstrip-tab>
     </kendo-tabstrip>

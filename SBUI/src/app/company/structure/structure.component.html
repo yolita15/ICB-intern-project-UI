@@ -24,11 +24,10 @@
         <div class="row">
           <div class="col-md ml-3 mr-3 mb-3">
             <h6>Bulding / Object Name</h6>
-            <div class="input-group" #objectsInput>
+            <div class="input-group" #objectsInput (click)="onObjectAutocompleteClick()">
               <kendo-autocomplete #objectsAutocomplete class="form-control" [data]="objects" [suggest]="true"
-                [valueField]="'name'" value="{{selectedObjects}}"
-                (valueChange)="onObjectsAutocompleteValueChange($event)" aria-describedby="inner-button"
-                (click)="onObjectAutocompleteClick()">
+                [valueField]="'name'" value="{{ selectedObjects }}"
+                (valueChange)="onObjectsAutocompleteValueChange($event)" aria-describedby="inner-button">
               </kendo-autocomplete>
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #objectsButton
@@ -37,7 +36,7 @@
             </div>
             <kendo-popup *ngIf="showObjects" [anchor]="objectsInput">
               <kendo-treeview [nodes]="objects" textField="name" kendoTreeViewExpandable kendoTreeViewSelectable
-                [selectBy]="'name'" [(selectedKeys)]="selectedObjects" (selectionChange)="handleSelection($event)"
+                [selectBy]="'name'" [(selectedKeys)]="selectedObjects" (selectionChange)="handleObjectSelection($event)"
                 kendoTreeViewFlatDataBinding idField="id" parentIdField="parentId" class="pr-5">
               </kendo-treeview>
             </kendo-popup>
@@ -45,16 +44,16 @@
           <div class="col-md ml-3 mr-3 mb-3">
             <h6>Object Type</h6>
             <kendo-combobox #typesCombobox [data]="objectTypes" [suggest]="true" [textField]="'name'"
-              [valueField]="'name'" class="w-100" (focus)="onObjectTypesComboboxClick()">
+              [valueField]="'name'" class="w-100" (focus)="onObjectTypesComboboxClick()"
+              (valueChange)="onObjectTypeComboboxValueChange($event)">
             </kendo-combobox>
           </div>
           <div class="col-md ml-3 mr-3 mb-3">
             <h6>TFM Code</h6>
-            <div class="input-group" #tfmsInput>
+            <div class="input-group" #tfmsInput (click)="onTfmsAutocompleteClick()">
               <kendo-autocomplete #tfmsAutocomplete class="form-control" [data]="tfms" [suggest]="true"
-                [valueField]="'dataToDisplay'" value="{{selectedTfms}}"
-                (valueChange)="onTfmsAutocompleteValueChange($event)" aria-describedby="inner-button"
-                (click)="onTfmsAutocompleteClick()">
+                [valueField]="'dataToDisplay'" value="{{ selectedTfms }}"
+                (valueChange)="onTfmsAutocompleteValueChange($event)" aria-describedby="inner-button">
               </kendo-autocomplete>
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" id="inner-button" type="button" kendoButton #tfmsButton
@@ -64,7 +63,7 @@
             <kendo-popup *ngIf="showTfms" [anchor]="tfmsInput">
               <kendo-treeview [nodes]="tfms" textField="dataToDisplay" kendoTreeViewExpandable kendoTreeViewSelectable
                 [selectBy]="'dataToDisplay'" [(selectedKeys)]="selectedTfms" kendoTreeViewFlatDataBinding idField="id"
-                parentIdField="parentId" class="pr-5">
+                parentIdField="parentId" (selectionChange)="handleTfmSelection($event)" class="pr-5">
               </kendo-treeview>
             </kendo-popup>
           </div>

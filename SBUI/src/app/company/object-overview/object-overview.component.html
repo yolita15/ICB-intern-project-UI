@@ -1,4 +1,4 @@
-<div *ngIf="object.id" class="accordion shadow-sm border-bottom my-3" id="overviewAccordion">
+<div *ngIf="object" class="accordion shadow-sm border-bottom my-3" id="overviewAccordion">
   <div class="card rounded">
     <div class="card-header p-0" id="overviewHeading">
       <h5 class="mb-0">
@@ -33,7 +33,8 @@
                 <div class="col-md mt-3 ml-3">
                   <div class="mb-3 h6">Name: <span class="font-weight-normal">{{ object.name }}</span>
                   </div>
-                  <div class="mb-3 h6">Path:</div>
+                  <div class="mb-3 h6">Path: <span class="font-weight-normal">{{ object.path }}</span>
+                  </div>
                   <div class="mb-3 h6">
                     Providers:
                     <kendo-dropdownlist class="ml-2" [data]="providers" [textField]="'name'" [valueField]="'name'"
@@ -41,20 +42,22 @@
                     </kendo-dropdownlist>
                   </div>
                   <div class="text-left h5 mt-4 mb-4 heading">Departments</div>
-                  <div *ngFor="let department of defaultProvider.departments">
+                  <div *ngFor="let department of departmentsForObject(defaultProvider)">
                     <img class="mb-2" width="25" src="http://localhost:49419/api/departments/{{ department.id }}/image">
                     <span class="ml-2">{{ department.name }}</span>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <img src="http://localhost:49419/api/objects/{{ object.id }}/image" class="img-fluid float-right" width="300" alt="">
+                  <img src="http://localhost:49419/api/objects/{{ object.id }}/image" class="img-fluid float-right"
+                    width="300" alt="">
                 </div>
               </div>
             </ng-template>
           </kendo-tabstrip-tab>
           <kendo-tabstrip-tab [title]="'Contacts'">
             <ng-template kendoTabContent>
-              <div *ngFor="let user of users" class="mt-3 mb-3 font-weight-bold">{{ user.type.name }}<span class="font-weight-normal"> {{ user.name}}</span></div>
+              <div *ngFor="let user of object.users" class="mt-3 mb-3 font-weight-bold">{{ user.type.name }}<span
+                  class="font-weight-normal"> {{ user.name }}</span></div>
             </ng-template>
           </kendo-tabstrip-tab>
         </kendo-tabstrip>

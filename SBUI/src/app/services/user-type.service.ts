@@ -14,7 +14,7 @@ export class UserTypeService {
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
   }
 
-  public getAllUsers(): Observable<UserType[]> {
+  public getAllUserTypes(): Observable<UserType[]> {
     return this.http.get<UserType[]>(this.accessPointUrl, { headers: this.headers });
   }
 }

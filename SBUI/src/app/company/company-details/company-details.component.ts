@@ -16,6 +16,5 @@ export class CompanyDetailsComponent implements OnInit {
   ngOnInit() {
     const resolvedData: CompanyResolved = this.route.snapshot.data['resolvedData'];
     this.company = resolvedData.company;
-    console.log(this.company);
   }
 }
